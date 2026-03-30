@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Remake": {
+      "commandName": "Project",
+      "commandLineArgs": "--help"
+    }
+  }
+}
