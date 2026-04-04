@@ -11,34 +11,34 @@ Built on top of \*\*KeraLua\*\*, ReMake embeds a fast, lightweight Lua runtime t
 
 ReMake aims to honour Premake’s philosophy while pushing the ecosystem forward with thoughtful architecture, maintainability, and developer joy.
 
-\## Changes
-\### ReMake no longer uses `premake\_main.lua`
+\# Changes
+\# ReMake no longer uses `premake\_main.lua`
 
 ReMake no longer uses \*\*`premake\_main.lua`\*\* as its entry point.  
 
 All existing Premake scripts continue to work exactly as before — nothing changes for users or for your project’s `premake5.lua`.
 
-\## Why the change?
-\### Cleaner architecture  
+\# Why the change?
+\# Cleaner architecture  
 
 ReMake now drives Premake from a modern, idiomatic .NET execution pipeline instead of relying on Premake’s legacy bootstrap script.
 
-\### Better control over startup  
+\# Better control over startup  
 
 Removing `premake\_main.lua` allows ReMake to manage initialization, error handling, and help interception directly in C#, without patching or overriding upstream Lua files.
 
-\### Improved introspection  
+\# Improved introspection  
 
 With KeraLua hosting the Lua runtime, ReMake can load modules, inspect the DSL, and integrate with .NET far earlier and more cleanly than the old bootstrap allowed.
 
 You can see this in \*\*`PremakeHost.cs` → `Execute`\*\* — ReMake now loads everything up to the point where the command line is processed.  
 This enables features like intercepting `--help` and rendering help output through \*\*Spectre.Console\*\* if desired.
 
-\### Full compatibility preserved  
+\# Full compatibility preserved  
 
 The Premake DSL, APIs, and behaviour remain unchanged. ReMake simply replaces the bootstrap layer, not the scripting model.
 
-\## In short
+\# In short
 
 \*\*The Lua you write stays the same — the engine running it is now cleaner, faster, and easier to extend.\*\*
 

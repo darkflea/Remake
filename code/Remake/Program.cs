@@ -5,7 +5,7 @@ namespace Remake
 {
     internal static class Program
     {
-        public static string PremakeRootDirectory = AppContext.BaseDirectory;
+        private static string PremakeRootDirectory = AppContext.BaseDirectory;
 
         public static int Main(string[] args)
         {
@@ -17,7 +17,7 @@ namespace Remake
             Console.WriteLine($"Premake {BuildInfo.PREMAKE_VERSION}");
 
             var host = new PremakeHost();  
-            PremakeRuntime.Instance.CheckResult(host.Init());
+            PremakeRuntime.Instance.CheckResult(host.Init(PremakeRootDirectory));
 
             if (PremakeRuntime.Result.ExitCode != 0)
             {
